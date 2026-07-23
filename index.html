@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sushilkumar Kuchame | Full Stack & ASP.NET Core Web API Developer</title>
+  <meta name="description" content="Official portfolio of Sushilkumar Kuchame - Full Stack & ASP.NET Core Web API Developer based in Pune. Specialized in C#, .NET 8, Clean Architecture, SQL Server, and Web Technologies." />
+  <meta name="keywords" content="Sushilkumar Kuchame, .NET Developer, ASP.NET Core, C#, Clean Architecture, Web API, Pune, Software Engineer, Portfolio" />
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <!-- Ambient Background Lights -->
+  <div class="ambient-glow glow-1"></div>
+  <div class="ambient-glow glow-2"></div>
+
+  <!-- Navigation Bar -->
+  <header class="navbar" id="navbar">
+    <div class="nav-container">
+      <a href="#hero" class="nav-brand">
+        <span class="brand-code">&lt;</span>Sushilkumar<span class="brand-accent">.Dev</span><span class="brand-code">/&gt;</span>
+      </a>
+
+      <nav class="nav-menu" id="nav-menu">
+        <a href="#about" class="nav-link">About</a>
+        <a href="#skills" class="nav-link">Skills</a>
+        <a href="#projects" class="nav-link">Projects</a>
+        <a href="#code-preview" class="nav-link">Code Preview</a>
+        <a href="#timeline" class="nav-link">Timeline</a>
+        <a href="#contact" class="nav-link">Contact</a>
+      </nav>
+
+      <div class="nav-actions">
+        <a href="https://github.com/sushilkumar9096" target="_blank" rel="noopener noreferrer" class="icon-btn" title="GitHub Profile">
+          <i data-lucide="github"></i>
+        </a>
+        <a href="https://www.linkedin.com/in/sushilkumar-kuchame-33849a242/" target="_blank" rel="noopener noreferrer" class="icon-btn" title="LinkedIn Profile">
+          <i data-lucide="linkedin"></i>
+        </a>
+        <button class="mobile-toggle" id="mobile-toggle" aria-label="Toggle navigation menu">
+          <i data-lucide="menu"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- Hero Section -->
+    <section class="hero" id="hero">
+      <div class="hero-container">
+        <div class="hero-content">
+          <div class="status-badge">
+            <span class="pulse-dot"></span>
+            <span>Open for Opportunities</span>
+          </div>
+
+          <h1 class="hero-title">
+            Hi, I'm <span class="gradient-text">Sushilkumar Kuchame</span>
+          </h1>
+          <h2 class="hero-subtitle">
+            Full Stack & <span class="accent-text">ASP.NET Core Web API</span> Developer
+          </h2>
+
+          <p class="hero-description" id="hero-tagline">
+            Building robust backend architectures, RESTful Web APIs, and responsive modern web applications with .NET 8, Clean Architecture, and SQL Server.
+          </p>
+
+          <div class="hero-location-pill">
+            <i data-lucide="map-pin"></i>
+            <span>Pune, Maharashtra, India</span>
+          </div>
+
+          <div class="hero-actions">
+            <a href="#projects" class="btn btn-primary">
+              <i data-lucide="folder-git-2"></i>
+              <span>View My Projects</span>
+            </a>
+            <a href="https://www.linkedin.com/in/sushilkumar-kuchame-33849a242/" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">
+              <i data-lucide="linkedin"></i>
+              <span>Connect on LinkedIn</span>
+            </a>
+            <a href="tel:+919096422669" class="btn btn-outline">
+              <i data-lucide="phone"></i>
+              <span>Call Direct</span>
+            </a>
+          </div>
+
+          <div class="hero-tech-pills">
+            <span class="tech-pill"><i data-lucide="cpu"></i> C# / .NET 8</span>
+            <span class="tech-pill"><i data-lucide="layers"></i> Clean Architecture</span>
+            <span class="tech-pill"><i data-lucide="database"></i> SQL Server / EF Core</span>
+            <span class="tech-pill"><i data-lucide="globe"></i> Web APIs</span>
+            <span class="tech-pill"><i data-lucide="layout"></i> HTML5 / CSS3 / JS</span>
+          </div>
+        </div>
+
+        <div class="hero-visual">
+          <div class="profile-card-container">
+            <div class="profile-image-wrapper">
+              <div class="profile-glow-ring"></div>
+              <img src="profile.jpg" alt="Sushilkumar Kuchame - Full Stack .NET Developer" class="profile-photo" />
+            </div>
+            <div class="profile-badge-under">
+              <i data-lucide="check-circle-2"></i>
+              <span>Full Stack .NET Certified</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about section" id="about">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-subtitle">Get to know me</span>
+          <h2 class="section-title">About <span class="gradient-text">Sushilkumar</span></h2>
+        </div>
+
+        <div class="about-grid">
+          <div class="about-card glass-panel">
+            <div class="about-profile-header">
+              <img src="profile.jpg" alt="Sushilkumar Kuchame" class="about-mini-avatar" />
+              <div>
+                <h3 class="about-card-title"><i data-lucide="user"></i> Background & Expertise</h3>
+                <span class="about-card-subtitle">B.Tech IT • Pune, Maharashtra</span>
+              </div>
+            </div>
+            <p id="about-bio">
+              Enthusiastic Full Stack .NET Developer based in Pune with strong academic and project experience in building scalable web applications using C#, ASP.NET Core MVC, ASP.NET Core Web API, SQL Server, and Clean Architecture. Experienced in building secure RESTful APIs with JWT authentication, containerizing services with Docker, and developing responsive web frontends using HTML5, CSS3, and JavaScript.
+            </p>
+            <div class="contact-mini-bar">
+              <div><i data-lucide="mail"></i> <strong>Email:</strong> <a href="mailto:sushilofficial9096@gmail.com">sushilofficial9096@gmail.com</a></div>
+              <div><i data-lucide="phone"></i> <strong>Phone:</strong> <a href="tel:+919096422669">+91 9096422669</a></div>
+              <div><i data-lucide="map-pin"></i> <strong>Location:</strong> Pune, India</div>
+              <div><i data-lucide="award"></i> <strong>Certification:</strong> Seed Infotech (2025)</div>
+            </div>
+          </div>
+
+          <div class="metrics-grid" id="metrics-grid">
+            <!-- Dynamically populated by JS -->
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section class="skills section" id="skills">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-subtitle">Technical Proficiency</span>
+          <h2 class="section-title">Skills & <span class="gradient-text">Technologies</span></h2>
+        </div>
+
+        <div class="skills-wrapper glass-panel">
+          <div class="skills-tabs" id="skills-tabs">
+            <button class="tab-btn active" data-tab="backend"><i data-lucide="cpu"></i> Backend (.NET/C#)</button>
+            <button class="tab-btn" data-tab="frontend"><i data-lucide="layout"></i> Frontend & Web UI</button>
+            <button class="tab-btn" data-tab="database"><i data-lucide="database"></i> Database & Tools</button>
+            <button class="tab-btn" data-tab="architecture"><i data-lucide="layers"></i> Architecture Patterns</button>
+          </div>
+
+          <div class="skills-content" id="skills-content">
+            <!-- Dynamically populated by JS -->
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Showcase Projects Section -->
+    <section class="projects section" id="projects">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-subtitle">GitHub Repositories</span>
+          <h2 class="section-title">Featured <span class="gradient-text">Projects</span></h2>
+        </div>
+
+        <div class="project-filters" id="project-filters">
+          <button class="filter-btn active" data-filter="all">All Projects</button>
+          <button class="filter-btn" data-filter="backend">Backend & Web API</button>
+          <button class="filter-btn" data-filter="fullstack">Full Stack Systems</button>
+          <button class="filter-btn" data-filter="frontend">Web Applications</button>
+        </div>
+
+        <div class="projects-grid" id="projects-grid">
+          <!-- Dynamically populated by JS -->
+        </div>
+      </div>
+    </section>
+
+    <!-- Code Preview Terminal Section -->
+    <section class="code-preview section" id="code-preview">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-subtitle">Code Architecture Showcase</span>
+          <h2 class="section-title">Live Code <span class="gradient-text">Terminal</span></h2>
+          <p class="section-desc">Inspect actual clean C# code snippets from my ASP.NET Core Web API projects.</p>
+        </div>
+
+        <div class="terminal-container glass-panel">
+          <div class="terminal-header">
+            <div class="terminal-tabs" id="code-tabs">
+              <!-- Dynamically populated by JS -->
+            </div>
+            <div class="terminal-actions">
+              <button class="copy-btn" id="copy-code-btn" title="Copy code snippet">
+                <i data-lucide="copy"></i>
+                <span>Copy Code</span>
+              </button>
+            </div>
+          </div>
+          <div class="terminal-body">
+            <pre><code id="code-display" class="language-csharp"></code></pre>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Timeline Section -->
+    <section class="timeline section" id="timeline">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-subtitle">Career Roadmap</span>
+          <h2 class="section-title">Experience & <span class="gradient-text">Education</span></h2>
+        </div>
+
+        <div class="timeline-track" id="timeline-track">
+          <!-- Dynamically populated by JS -->
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact section" id="contact">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-subtitle">Let's Connect</span>
+          <h2 class="section-title">Get In <span class="gradient-text">Touch</span></h2>
+        </div>
+
+        <div class="contact-grid">
+          <div class="contact-info-card glass-panel">
+            <h3>Direct Contact Details</h3>
+            <p>I am available for Full-time roles, ASP.NET Core Backend opportunities, and technical collaborations in Pune or Remote.</p>
+
+            <div class="contact-items">
+              <div class="contact-item">
+                <div class="contact-icon"><i data-lucide="mail"></i></div>
+                <div>
+                  <span class="item-label">Email</span>
+                  <a href="mailto:sushilofficial9096@gmail.com" class="item-val">sushilofficial9096@gmail.com</a>
+                </div>
+              </div>
+
+              <div class="contact-item">
+                <div class="contact-icon"><i data-lucide="phone"></i></div>
+                <div>
+                  <span class="item-label">Phone / WhatsApp</span>
+                  <a href="tel:+919096422669" class="item-val">+91 9096422669</a>
+                </div>
+              </div>
+
+              <div class="contact-item">
+                <div class="contact-icon"><i data-lucide="map-pin"></i></div>
+                <div>
+                  <span class="item-label">Current Location</span>
+                  <span class="item-val">Pune, Maharashtra, India</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="social-links-box">
+              <h4>Social Profiles</h4>
+              <div class="social-btns">
+                <a href="https://github.com/sushilkumar9096" target="_blank" rel="noopener noreferrer" class="social-btn">
+                  <i data-lucide="github"></i>
+                  <span>GitHub</span>
+                </a>
+                <a href="https://www.linkedin.com/in/sushilkumar-kuchame-33849a242/" target="_blank" rel="noopener noreferrer" class="social-btn linkedin-glow">
+                  <i data-lucide="linkedin"></i>
+                  <span>LinkedIn</span>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <div class="contact-form-card glass-panel">
+            <h3>Send a Direct Message</h3>
+            <form id="contact-form">
+              <div class="form-group">
+                <label for="name">Your Name</label>
+                <input type="text" id="name" required placeholder="Enter your full name" />
+              </div>
+              <div class="form-group">
+                <label for="email">Your Email</label>
+                <input type="email" id="email" required placeholder="name@example.com" />
+              </div>
+              <div class="form-group">
+                <label for="subject">Subject</label>
+                <input type="text" id="subject" required placeholder="Job Opportunity / Project Inquiry" />
+              </div>
+              <div class="form-group">
+                <label for="message">Message</label>
+                <textarea id="message" rows="4" required placeholder="Write your message here..."></textarea>
+              </div>
+              <button type="submit" class="btn btn-primary btn-full">
+                <i data-lucide="send"></i>
+                <span>Send Message</span>
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container footer-content">
+      <div class="footer-brand">
+        <a href="#hero" class="nav-brand">
+          <span class="brand-code">&lt;</span>Sushilkumar<span class="brand-accent">.Dev</span><span class="brand-code">/&gt;</span>
+        </a>
+        <p>Built with clean HTML5, modern CSS Glassmorphic design, and Vanilla JavaScript.</p>
+      </div>
+
+      <div class="footer-copy">
+        <p>&copy; <span id="year"></span> Sushilkumar Kuchame. All rights reserved.</p>
+        <p class="sub-copy">Pune, Maharashtra, India</p>
+      </div>
+
+      <a href="#hero" class="back-to-top" title="Back to top">
+        <i data-lucide="arrow-up"></i>
+      </a>
+    </div>
+  </footer>
+
+  <!-- Project Detail Modal -->
+  <div class="modal-overlay" id="project-modal" aria-hidden="true">
+    <div class="modal-container glass-panel">
+      <button class="modal-close" id="modal-close"><i data-lucide="x"></i></button>
+      <div class="modal-content" id="modal-body">
+        <!-- Dynamically filled by JS -->
+      </div>
+    </div>
+  </div>
+
+  <!-- JavaScript -->
+  <script src="portfolioData.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
