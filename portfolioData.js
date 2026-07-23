@@ -9,12 +9,12 @@ const portfolioData = {
     github: "https://github.com/sushilkumar9096",
     linkedin: "https://www.linkedin.com/in/sushilkumar-kuchame-33849a242/",
     status: "Open for Opportunities",
-    bio: "Enthusiastic Full Stack .NET Developer based in Pune with strong academic and project experience in building scalable web applications using C#, ASP.NET Core MVC, ASP.NET Core Web API, SQL Server, and Clean Architecture. Experienced in building secure RESTful APIs with JWT authentication, containerizing services with Docker, and developing responsive web frontends using HTML5, CSS3, and JavaScript.",
+    bio: "Enthusiastic Full Stack .NET Developer based in Pune with strong academic and project experience in building scalable web applications using C#, ASP.NET Core MVC, ASP.NET Core Web API, SQL Server, and Clean Architecture. Certified in Full Stack .NET Core from Seed Infotech (2025). Experienced in building secure RESTful APIs with JWT authentication, containerizing services with Docker, and developing responsive web frontends using HTML5, CSS3, and JavaScript.",
     metrics: [
       { label: "Degree", value: "B.Tech IT" },
       { label: "B.Tech CGPA", value: "7.17 / 10" },
       { label: "Primary Stack", value: "C# / .NET 8" },
-      { label: "Certification", value: "Seed Infotech (2025)" }
+      { label: "Full Stack .NET Core Certified (2025)", value: "Seed Infotech" }
     ]
   },
 
@@ -188,7 +188,7 @@ public class ProductsController : ControllerBase
     {
       period: "2025",
       type: "certification",
-      role: "Full Stack .NET Developer Certificate",
+      role: "Full Stack .NET Core Certification",
       organization: "Seed Infotech",
       description: "Professional certification covering ASP.NET Core, C#, Web API, Entity Framework Core, SQL Server, and full-stack web application development."
     },
