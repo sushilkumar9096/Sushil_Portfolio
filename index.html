@@ -19,6 +19,9 @@
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
+  <!-- Kinetic Particle Canvas (Motion Primitive) -->
+  <canvas id="motion-canvas"></canvas>
+
   <!-- Ambient Background Lights -->
   <div class="ambient-glow glow-1"></div>
   <div class="ambient-glow glow-2"></div>
@@ -26,7 +29,7 @@
   <!-- Navigation Bar -->
   <header class="navbar" id="navbar">
     <div class="nav-container">
-      <a href="#hero" class="nav-brand">
+      <a href="#hero" class="nav-brand motion-magnetic">
         <span class="brand-code">&lt;</span>Sushilkumar<span class="brand-accent">.Dev</span><span class="brand-code">/&gt;</span>
       </a>
 
@@ -40,12 +43,16 @@
       </nav>
 
       <div class="nav-actions">
-        <a href="https://github.com/sushilkumar9096" target="_blank" rel="noopener noreferrer" class="icon-btn" title="GitHub Profile">
+        <div class="motion-badge" title="Motion Primitives Enabled">
+          <span class="motion-pulse-dot"></span>
+          <span>Motion FX</span>
+        </div>
+        <a href="https://github.com/sushilkumar9096" target="_blank" rel="noopener noreferrer" class="icon-btn motion-magnetic" title="GitHub Profile">
           <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
             <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
           </svg>
         </a>
-        <a href="https://www.linkedin.com/in/sushilkumar-kuchame-33849a242/" target="_blank" rel="noopener noreferrer" class="icon-btn linkedin-btn" title="LinkedIn Profile">
+        <a href="https://www.linkedin.com/in/sushilkumar-kuchame-33849a242/" target="_blank" rel="noopener noreferrer" class="icon-btn linkedin-btn motion-magnetic" title="LinkedIn Profile">
           <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="#0077b5">
             <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.46 10.9v8.37H9.25V10.9H6.46M7.86 6.72a1.47 1.47 0 1 0 0 2.94 1.47 1.47 0 0 0 0-2.94z"/>
           </svg>
@@ -61,8 +68,8 @@
     <!-- Hero Section -->
     <section class="hero" id="hero">
       <div class="hero-container">
-        <div class="hero-content">
-          <div class="status-badge">
+        <div class="hero-content motion-reveal">
+          <div class="status-badge motion-spotlight">
             <span class="pulse-dot"></span>
             <span>Open for Opportunities</span>
           </div>
@@ -71,49 +78,49 @@
             Hi, I'm <span class="gradient-text">Sushilkumar Kuchame</span>
           </h1>
           <h2 class="hero-subtitle">
-            Full Stack & <span class="accent-text">ASP.NET Core Web API</span> Developer
+            Full Stack &amp; <span class="role-morph-wrapper"><span id="role-morph" class="accent-text">ASP.NET Core Web API</span><span class="role-morph-cursor"></span></span> Developer
           </h2>
 
           <p class="hero-description" id="hero-tagline">
             Building robust backend architectures, RESTful Web APIs, and responsive modern web applications with .NET 8, Clean Architecture, and SQL Server.
           </p>
 
-          <div class="hero-location-pill">
+          <div class="hero-location-pill motion-spotlight">
             <i data-lucide="map-pin"></i>
             <span>Pune, Maharashtra, India</span>
           </div>
 
           <div class="hero-actions">
-            <a href="#projects" class="btn btn-primary">
+            <a href="#projects" class="btn btn-primary motion-magnetic">
               <i data-lucide="folder-git-2"></i>
               <span>View My Projects</span>
             </a>
-            <a href="https://www.linkedin.com/in/sushilkumar-kuchame-33849a242/" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">
+            <a href="https://www.linkedin.com/in/sushilkumar-kuchame-33849a242/" target="_blank" rel="noopener noreferrer" class="btn btn-secondary motion-magnetic">
               <img src="linkedin-logo.svg" alt="LinkedIn" style="width: 18px; height: 18px;" />
               <span>Connect on LinkedIn</span>
             </a>
-            <a href="tel:+919096422669" class="btn btn-outline">
+            <a href="tel:+919096422669" class="btn btn-outline motion-magnetic">
               <i data-lucide="phone"></i>
               <span>Call Direct</span>
             </a>
           </div>
 
           <div class="hero-tech-pills">
-            <span class="tech-pill"><i data-lucide="cpu"></i> C# / .NET 8</span>
-            <span class="tech-pill"><i data-lucide="layers"></i> Clean Architecture</span>
-            <span class="tech-pill"><i data-lucide="database"></i> SQL Server / EF Core</span>
-            <span class="tech-pill"><i data-lucide="globe"></i> Web APIs</span>
-            <span class="tech-pill"><i data-lucide="layout"></i> HTML5 / CSS3 / JS</span>
+            <span class="tech-pill motion-spotlight"><i data-lucide="cpu"></i> C# / .NET 8</span>
+            <span class="tech-pill motion-spotlight"><i data-lucide="layers"></i> Clean Architecture</span>
+            <span class="tech-pill motion-spotlight"><i data-lucide="database"></i> SQL Server / EF Core</span>
+            <span class="tech-pill motion-spotlight"><i data-lucide="globe"></i> Web APIs</span>
+            <span class="tech-pill motion-spotlight"><i data-lucide="layout"></i> HTML5 / CSS3 / JS</span>
           </div>
         </div>
 
-        <div class="hero-visual">
-          <div class="profile-card-container">
-            <div class="profile-image-wrapper">
+        <div class="hero-visual motion-reveal delay-2">
+          <div class="profile-card-container motion-tilt">
+            <div class="profile-image-wrapper motion-border-beam">
               <div class="profile-glow-ring"></div>
               <img src="profile.jpg" alt="Sushilkumar Kuchame - Full Stack .NET Developer" class="profile-photo" />
             </div>
-            <div class="profile-badge-under">
+            <div class="profile-badge-under motion-spotlight">
               <i data-lucide="check-circle-2"></i>
               <span>Full Stack .NET Certified</span>
             </div>
@@ -125,17 +132,17 @@
     <!-- About Section -->
     <section class="about section" id="about">
       <div class="container">
-        <div class="section-header">
+        <div class="section-header motion-reveal">
           <span class="section-subtitle">Get to know me</span>
           <h2 class="section-title">About <span class="gradient-text">Sushilkumar</span></h2>
         </div>
 
         <div class="about-grid">
-          <div class="about-card glass-panel">
+          <div class="about-card glass-panel motion-spotlight motion-reveal motion-tilt">
             <div class="about-profile-header">
               <img src="profile.jpg" alt="Sushilkumar Kuchame" class="about-mini-avatar" />
               <div>
-                <h3 class="about-card-title"><i data-lucide="user"></i> Background & Expertise</h3>
+                <h3 class="about-card-title"><i data-lucide="user"></i> Background &amp; Expertise</h3>
                 <span class="about-card-subtitle">B.Tech IT • Pune, Maharashtra</span>
               </div>
             </div>
@@ -151,7 +158,7 @@
           </div>
 
           <div class="metrics-grid" id="metrics-grid">
-            <!-- Dynamically populated by JS -->
+            <!-- Dynamically populated by JS with Motion Primitives -->
           </div>
         </div>
       </div>
@@ -160,17 +167,17 @@
     <!-- Skills Section -->
     <section class="skills section" id="skills">
       <div class="container">
-        <div class="section-header">
+        <div class="section-header motion-reveal">
           <span class="section-subtitle">Technical Proficiency</span>
-          <h2 class="section-title">Skills & <span class="gradient-text">Technologies</span></h2>
+          <h2 class="section-title">Skills &amp; <span class="gradient-text">Technologies</span></h2>
         </div>
 
-        <div class="skills-wrapper glass-panel">
+        <div class="skills-wrapper glass-panel motion-spotlight motion-reveal">
           <div class="skills-tabs" id="skills-tabs">
-            <button class="tab-btn active" data-tab="backend"><i data-lucide="cpu"></i> Backend (.NET/C#)</button>
-            <button class="tab-btn" data-tab="frontend"><i data-lucide="layout"></i> Frontend & Web UI</button>
-            <button class="tab-btn" data-tab="database"><i data-lucide="database"></i> Database & Tools</button>
-            <button class="tab-btn" data-tab="architecture"><i data-lucide="layers"></i> Architecture Patterns</button>
+            <button class="tab-btn active motion-magnetic" data-tab="backend"><i data-lucide="cpu"></i> Backend (.NET/C#)</button>
+            <button class="tab-btn motion-magnetic" data-tab="frontend"><i data-lucide="layout"></i> Frontend &amp; Web UI</button>
+            <button class="tab-btn motion-magnetic" data-tab="database"><i data-lucide="database"></i> Database &amp; Tools</button>
+            <button class="tab-btn motion-magnetic" data-tab="architecture"><i data-lucide="layers"></i> Architecture Patterns</button>
           </div>
 
           <div class="skills-content" id="skills-content">
@@ -183,20 +190,20 @@
     <!-- Showcase Projects Section -->
     <section class="projects section" id="projects">
       <div class="container">
-        <div class="section-header">
+        <div class="section-header motion-reveal">
           <span class="section-subtitle">GitHub Repositories</span>
           <h2 class="section-title">Featured <span class="gradient-text">Projects</span></h2>
         </div>
 
-        <div class="project-filters" id="project-filters">
-          <button class="filter-btn active" data-filter="all">All Projects</button>
-          <button class="filter-btn" data-filter="backend">Backend & Web API</button>
-          <button class="filter-btn" data-filter="fullstack">Full Stack Systems</button>
-          <button class="filter-btn" data-filter="frontend">Web Applications</button>
+        <div class="project-filters motion-reveal delay-1" id="project-filters">
+          <button class="filter-btn active motion-magnetic" data-filter="all">All Projects</button>
+          <button class="filter-btn motion-magnetic" data-filter="backend">Backend &amp; Web API</button>
+          <button class="filter-btn motion-magnetic" data-filter="fullstack">Full Stack Systems</button>
+          <button class="filter-btn motion-magnetic" data-filter="frontend">Web Applications</button>
         </div>
 
         <div class="projects-grid" id="projects-grid">
-          <!-- Dynamically populated by JS -->
+          <!-- Dynamically populated by JS with Motion Primitives -->
         </div>
       </div>
     </section>
@@ -204,19 +211,19 @@
     <!-- Code Preview Terminal Section -->
     <section class="code-preview section" id="code-preview">
       <div class="container">
-        <div class="section-header">
+        <div class="section-header motion-reveal">
           <span class="section-subtitle">Code Architecture Showcase</span>
           <h2 class="section-title">Live Code <span class="gradient-text">Terminal</span></h2>
           <p class="section-desc">Inspect actual clean C# code snippets from my ASP.NET Core Web API projects.</p>
         </div>
 
-        <div class="terminal-container glass-panel">
+        <div class="terminal-container glass-panel motion-border-beam motion-spotlight motion-reveal">
           <div class="terminal-header">
             <div class="terminal-tabs" id="code-tabs">
               <!-- Dynamically populated by JS -->
             </div>
             <div class="terminal-actions">
-              <button class="copy-btn" id="copy-code-btn" title="Copy code snippet">
+              <button class="copy-btn motion-magnetic" id="copy-code-btn" title="Copy code snippet">
                 <i data-lucide="copy"></i>
                 <span>Copy Code</span>
               </button>
@@ -232,9 +239,9 @@
     <!-- Timeline Section -->
     <section class="timeline section" id="timeline">
       <div class="container">
-        <div class="section-header">
+        <div class="section-header motion-reveal">
           <span class="section-subtitle">Career Roadmap</span>
-          <h2 class="section-title">Experience & <span class="gradient-text">Education</span></h2>
+          <h2 class="section-title">Experience &amp; <span class="gradient-text">Education</span></h2>
         </div>
 
         <div class="timeline-track" id="timeline-track">
@@ -246,13 +253,13 @@
     <!-- Contact Section -->
     <section class="contact section" id="contact">
       <div class="container">
-        <div class="section-header">
+        <div class="section-header motion-reveal">
           <span class="section-subtitle">Let's Connect</span>
           <h2 class="section-title">Get In <span class="gradient-text">Touch</span></h2>
         </div>
 
         <div class="contact-grid">
-          <div class="contact-info-card glass-panel">
+          <div class="contact-info-card glass-panel motion-spotlight motion-reveal motion-tilt">
             <h3>Direct Contact Details</h3>
             <p>I am available for Full-time roles, ASP.NET Core Backend opportunities, and technical collaborations in Pune or Remote.</p>
 
@@ -285,11 +292,11 @@
             <div class="social-links-box">
               <h4>Social Profiles</h4>
               <div class="social-btns">
-                <a href="https://github.com/sushilkumar9096" target="_blank" rel="noopener noreferrer" class="social-btn">
+                <a href="https://github.com/sushilkumar9096" target="_blank" rel="noopener noreferrer" class="social-btn motion-magnetic">
                   <img src="github-logo.svg" alt="GitHub" style="width: 18px; height: 18px;" />
                   <span>GitHub</span>
                 </a>
-                <a href="https://www.linkedin.com/in/sushilkumar-kuchame-33849a242/" target="_blank" rel="noopener noreferrer" class="social-btn linkedin-glow">
+                <a href="https://www.linkedin.com/in/sushilkumar-kuchame-33849a242/" target="_blank" rel="noopener noreferrer" class="social-btn linkedin-glow motion-magnetic">
                   <img src="linkedin-logo.svg" alt="LinkedIn" style="width: 18px; height: 18px;" />
                   <span>LinkedIn</span>
                 </a>
@@ -297,7 +304,7 @@
             </div>
           </div>
 
-          <div class="contact-form-card glass-panel">
+          <div class="contact-form-card glass-panel motion-spotlight motion-reveal">
             <h3>Send a Direct Message</h3>
             <form id="contact-form">
               <div class="form-group">
@@ -316,7 +323,7 @@
                 <label for="message">Message</label>
                 <textarea id="message" rows="4" required placeholder="Write your message here..."></textarea>
               </div>
-              <button type="submit" class="btn btn-primary btn-full">
+              <button type="submit" class="btn btn-primary btn-full motion-magnetic">
                 <i data-lucide="send"></i>
                 <span>Send Message</span>
               </button>
@@ -331,18 +338,18 @@
   <footer class="footer">
     <div class="container footer-content">
       <div class="footer-brand">
-        <a href="#hero" class="nav-brand">
+        <a href="#hero" class="nav-brand motion-magnetic">
           <span class="brand-code">&lt;</span>Sushilkumar<span class="brand-accent">.Dev</span><span class="brand-code">/&gt;</span>
         </a>
-        <p>Built with clean HTML5, modern CSS Glassmorphic design, and Vanilla JavaScript.</p>
+        <p>Built with clean HTML5, modern CSS Glassmorphic design, Motion Primitives, and Vanilla JavaScript.</p>
       </div>
 
       <div class="footer-copy">
         <p>&copy; <span id="year"></span> Sushilkumar Kuchame. All rights reserved.</p>
-        <p class="sub-copy">Pune, Maharashtra, India</p>
+        <p class="sub-copy">Pune, Maharashtra, India • Motion Engine Active ✨</p>
       </div>
 
-      <a href="#hero" class="back-to-top" title="Back to top">
+      <a href="#hero" class="back-to-top motion-magnetic" title="Back to top">
         <i data-lucide="arrow-up"></i>
       </a>
     </div>
