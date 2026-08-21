@@ -12,6 +12,274 @@ document.addEventListener('DOMContentLoaded', () => {
   const yearEl = document.getElementById('year');
   if (yearEl) yearEl.textContent = new Date().getFullYear();
 
+  // ==========================================================================
+  // MOTION PRIMITIVES ENGINE IMPLEMENTATION
+  // ==========================================================================
+  const MotionPrimitives = {
+    initAll() {
+      const safeRun = (fn) => { try { fn.call(this); } catch (e) { console.warn('Motion Primitive Warning:', e); } };
+      safeRun(this.initSpotlight);
+      safeRun(this.initTilt);
+      safeRun(this.initMagnetic);
+      safeRun(this.initRoleMorphing);
+      safeRun(this.initScrollReveal);
+      safeRun(this.initAnimatedCounters);
+      safeRun(this.initKineticCanvas);
+    },
+
+    // 1. Cursor Spotlight Primitive
+    initSpotlight() {
+      const elements = document.querySelectorAll('.motion-spotlight');
+      elements.forEach(el => {
+        if (el.dataset.spotlightInit) return;
+        el.dataset.spotlightInit = 'true';
+
+        el.addEventListener('mousemove', (e) => {
+          const rect = el.getBoundingClientRect();
+          const x = e.clientX - rect.left;
+          const y = e.clientY - rect.top;
+          el.style.setProperty('--mouse-x', `${x}px`);
+          el.style.setProperty('--mouse-y', `${y}px`);
+        });
+      });
+    },
+
+    // 2. 3D Tilt Primitive
+    initTilt() {
+      const elements = document.querySelectorAll('.motion-tilt');
+      elements.forEach(el => {
+        if (el.dataset.tiltInit) return;
+        el.dataset.tiltInit = 'true';
+
+        el.addEventListener('mousemove', (e) => {
+          const rect = el.getBoundingClientRect();
+          const x = e.clientX - rect.left;
+          const y = e.clientY - rect.top;
+          const centerX = rect.width / 2;
+          const centerY = rect.height / 2;
+          
+          const rotateX = ((y - centerY) / centerY) * -8;
+          const rotateY = ((x - centerX) / centerX) * 8;
+          
+          el.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`;
+        });
+
+        el.addEventListener('mouseleave', () => {
+          el.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)';
+        });
+      });
+    },
+
+    // 3. Magnetic Attraction Primitive
+    initMagnetic() {
+      const elements = document.querySelectorAll('.motion-magnetic');
+      elements.forEach(el => {
+        if (el.dataset.magneticInit) return;
+        el.dataset.magneticInit = 'true';
+
+        el.addEventListener('mousemove', (e) => {
+          const rect = el.getBoundingClientRect();
+          const centerX = rect.left + rect.width / 2;
+          const centerY = rect.top + rect.height / 2;
+          
+          const deltaX = (e.clientX - centerX) * 0.35;
+          const deltaY = (e.clientY - centerY) * 0.35;
+
+          el.style.transform = `translate3d(${deltaX}px, ${deltaY}px, 0)`;
+        });
+
+        el.addEventListener('mouseleave', () => {
+          el.style.transform = 'translate3d(0, 0, 0)';
+        });
+      });
+    },
+
+    // 4. Role Morphing Text Typewriter
+    initRoleMorphing() {
+      const morphEl = document.getElementById('role-morph');
+      if (!morphEl) return;
+
+      const roles = [
+        "ASP.NET Core Web API",
+        "Full Stack .NET 8",
+        "Clean Architecture",
+        "C# & SQL Server"
+      ];
+      let roleIdx = 0;
+      let charIdx = roles[0].length;
+      let isDeleting = false;
+
+      function typeLoop() {
+        const currentRole = roles[roleIdx];
+        
+        if (isDeleting) {
+          charIdx--;
+          morphEl.textContent = currentRole.substring(0, charIdx);
+        } else {
+          charIdx++;
+          morphEl.textContent = currentRole.substring(0, charIdx);
+        }
+
+        let speed = isDeleting ? 40 : 80;
+
+        if (!isDeleting && charIdx === currentRole.length) {
+          speed = 2200;
+          isDeleting = true;
+        } else if (isDeleting && charIdx === 0) {
+          isDeleting = false;
+          roleIdx = (roleIdx + 1) % roles.length;
+          speed = 400;
+        }
+
+        setTimeout(typeLoop, speed);
+      }
+
+      setTimeout(typeLoop, 2000);
+    },
+
+    // 5. Scroll Reveal IntersectionObserver
+    initScrollReveal() {
+      const reveals = document.querySelectorAll('.motion-reveal, .motion-reveal-left, .motion-reveal-right');
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('revealed');
+          }
+        });
+      }, { threshold: 0.1 });
+
+      reveals.forEach(el => observer.observe(el));
+    },
+
+    // 6. Animated Count-Up Numbers
+    initAnimatedCounters() {
+      const counters = document.querySelectorAll('.metric-value');
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting && !entry.target.dataset.counted) {
+            entry.target.dataset.counted = 'true';
+            const rawText = entry.target.textContent.trim();
+            const match = rawText.match(/^([^\d]*)([\d\.]+)(.*)$/);
+            if (match) {
+              const prefix = match[1];
+              const targetNum = parseFloat(match[2]);
+              const suffix = match[3];
+              const isDecimal = match[2].includes('.');
+              
+              let currentNum = 0;
+              const duration = 1500;
+              const steps = 40;
+              const increment = targetNum / steps;
+              const intervalTime = duration / steps;
+
+              const counterTimer = setInterval(() => {
+                currentNum += increment;
+                if (currentNum >= targetNum) {
+                  currentNum = targetNum;
+                  clearInterval(counterTimer);
+                }
+                entry.target.textContent = `${prefix}${isDecimal ? currentNum.toFixed(2) : Math.round(currentNum)}${suffix}`;
+              }, intervalTime);
+            }
+          }
+        });
+      }, { threshold: 0.5 });
+
+      counters.forEach(el => observer.observe(el));
+    },
+
+    // 7. Kinetic Background Canvas Mesh
+    initKineticCanvas() {
+      const canvas = document.getElementById('motion-canvas');
+      if (!canvas) return;
+
+      const ctx = canvas.getContext('2d');
+      let width = canvas.width = window.innerWidth;
+      let height = canvas.height = window.innerHeight;
+
+      let mouse = { x: width / 2, y: height / 2 };
+
+      window.addEventListener('resize', () => {
+        width = canvas.width = window.innerWidth;
+        height = canvas.height = window.innerHeight;
+      });
+
+      window.addEventListener('mousemove', (e) => {
+        mouse.x = e.clientX;
+        mouse.y = e.clientY;
+      });
+
+      const particleCount = Math.min(Math.floor(width / 20), 65);
+      const particles = [];
+
+      for (let i = 0; i < particleCount; i++) {
+        particles.push({
+          x: Math.random() * width,
+          y: Math.random() * height,
+          vx: (Math.random() - 0.5) * 0.6,
+          vy: (Math.random() - 0.5) * 0.6,
+          radius: Math.random() * 2 + 1,
+          color: Math.random() > 0.5 ? '#06b6d4' : '#8b5cf6'
+        });
+      }
+
+      function renderCanvas() {
+        ctx.clearRect(0, 0, width, height);
+
+        for (let i = 0; i < particles.length; i++) {
+          const p = particles[i];
+          p.x += p.vx;
+          p.y += p.vy;
+
+          if (p.x < 0 || p.x > width) p.vx *= -1;
+          if (p.y < 0 || p.y > height) p.vy *= -1;
+
+          // Draw particle
+          ctx.beginPath();
+          ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+          ctx.fillStyle = p.color;
+          ctx.shadowBlur = 8;
+          ctx.shadowColor = p.color;
+          ctx.fill();
+
+          // Connect nearby particles
+          for (let j = i + 1; j < particles.length; j++) {
+            const p2 = particles[j];
+            const dx = p.x - p2.x;
+            const dy = p.y - p2.y;
+            const dist = Math.sqrt(dx * dx + dy * dy);
+
+            if (dist < 120) {
+              ctx.beginPath();
+              ctx.moveTo(p.x, p.y);
+              ctx.lineTo(p2.x, p2.y);
+              ctx.strokeStyle = `rgba(6, 182, 212, ${0.2 * (1 - dist / 120)})`;
+              ctx.lineWidth = 0.8;
+              ctx.stroke();
+            }
+          }
+
+          // Cursor attraction line
+          const cdx = mouse.x - p.x;
+          const cdy = mouse.y - p.y;
+          const cdist = Math.sqrt(cdx * cdx + cdy * cdy);
+          if (cdist < 150) {
+            ctx.beginPath();
+            ctx.moveTo(p.x, p.y);
+            ctx.lineTo(mouse.x, mouse.y);
+            ctx.strokeStyle = `rgba(139, 92, 246, ${0.35 * (1 - cdist / 150)})`;
+            ctx.lineWidth = 1;
+            ctx.stroke();
+          }
+        }
+
+        requestAnimationFrame(renderCanvas);
+      }
+
+      renderCanvas();
+    }
+  };
+
   // ------------------------------------------------------------------------
   // 1. Navbar Scroll Effect & Mobile Drawer
   // ------------------------------------------------------------------------
@@ -319,273 +587,6 @@ document.addEventListener('DOMContentLoaded', () => {
       }, 3000);
     });
   }
-
-  // ==========================================================================
-  // 9. MOTION PRIMITIVES ENGINE IMPLEMENTATION
-  // ==========================================================================
-  const MotionPrimitives = {
-    initAll() {
-      this.initSpotlight();
-      this.initTilt();
-      this.initMagnetic();
-      this.initRoleMorphing();
-      this.initScrollReveal();
-      this.initAnimatedCounters();
-      this.initKineticCanvas();
-    },
-
-    // 1. Cursor Spotlight Primitive
-    initSpotlight() {
-      const elements = document.querySelectorAll('.motion-spotlight');
-      elements.forEach(el => {
-        if (el.dataset.spotlightInit) return;
-        el.dataset.spotlightInit = 'true';
-
-        el.addEventListener('mousemove', (e) => {
-          const rect = el.getBoundingClientRect();
-          const x = e.clientX - rect.left;
-          const y = e.clientY - rect.top;
-          el.style.setProperty('--mouse-x', `${x}px`);
-          el.style.setProperty('--mouse-y', `${y}px`);
-        });
-      });
-    },
-
-    // 2. 3D Tilt Primitive
-    initTilt() {
-      const elements = document.querySelectorAll('.motion-tilt');
-      elements.forEach(el => {
-        if (el.dataset.tiltInit) return;
-        el.dataset.tiltInit = 'true';
-
-        el.addEventListener('mousemove', (e) => {
-          const rect = el.getBoundingClientRect();
-          const x = e.clientX - rect.left;
-          const y = e.clientY - rect.top;
-          const centerX = rect.width / 2;
-          const centerY = rect.height / 2;
-          
-          const rotateX = ((y - centerY) / centerY) * -8;
-          const rotateY = ((x - centerX) / centerX) * 8;
-          
-          el.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`;
-        });
-
-        el.addEventListener('mouseleave', () => {
-          el.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)';
-        });
-      });
-    },
-
-    // 3. Magnetic Attraction Primitive
-    initMagnetic() {
-      const elements = document.querySelectorAll('.motion-magnetic');
-      elements.forEach(el => {
-        if (el.dataset.magneticInit) return;
-        el.dataset.magneticInit = 'true';
-
-        el.addEventListener('mousemove', (e) => {
-          const rect = el.getBoundingClientRect();
-          const centerX = rect.left + rect.width / 2;
-          const centerY = rect.top + rect.height / 2;
-          
-          const deltaX = (e.clientX - centerX) * 0.35;
-          const deltaY = (e.clientY - centerY) * 0.35;
-
-          el.style.transform = `translate3d(${deltaX}px, ${deltaY}px, 0)`;
-        });
-
-        el.addEventListener('mouseleave', () => {
-          el.style.transform = 'translate3d(0, 0, 0)';
-        });
-      });
-    },
-
-    // 4. Role Morphing Text Typewriter
-    initRoleMorphing() {
-      const morphEl = document.getElementById('role-morph');
-      if (!morphEl) return;
-
-      const roles = [
-        "ASP.NET Core Web API",
-        "Full Stack .NET 8",
-        "Clean Architecture",
-        "C# & SQL Server"
-      ];
-      let roleIdx = 0;
-      let charIdx = roles[0].length;
-      let isDeleting = false;
-
-      function typeLoop() {
-        const currentRole = roles[roleIdx];
-        
-        if (isDeleting) {
-          charIdx--;
-          morphEl.textContent = currentRole.substring(0, charIdx);
-        } else {
-          charIdx++;
-          morphEl.textContent = currentRole.substring(0, charIdx);
-        }
-
-        let speed = isDeleting ? 40 : 80;
-
-        if (!isDeleting && charIdx === currentRole.length) {
-          speed = 2200;
-          isDeleting = true;
-        } else if (isDeleting && charIdx === 0) {
-          isDeleting = false;
-          roleIdx = (roleIdx + 1) % roles.length;
-          speed = 400;
-        }
-
-        setTimeout(typeLoop, speed);
-      }
-
-      setTimeout(typeLoop, 2000);
-    },
-
-    // 5. Scroll Reveal IntersectionObserver
-    initScrollReveal() {
-      const reveals = document.querySelectorAll('.motion-reveal, .motion-reveal-left, .motion-reveal-right');
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('revealed');
-          }
-        });
-      }, { threshold: 0.1 });
-
-      reveals.forEach(el => observer.observe(el));
-    },
-
-    // 6. Animated Count-Up Numbers
-    initAnimatedCounters() {
-      const counters = document.querySelectorAll('.metric-value');
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting && !entry.target.dataset.counted) {
-            entry.target.dataset.counted = 'true';
-            const rawText = entry.target.textContent.trim();
-            const match = rawText.match(/^([^\d]*)([\d\.]+)(.*)$/);
-            if (match) {
-              const prefix = match[1];
-              const targetNum = parseFloat(match[2]);
-              const suffix = match[3];
-              const isDecimal = match[2].includes('.');
-              
-              let currentNum = 0;
-              const duration = 1500;
-              const steps = 40;
-              const increment = targetNum / steps;
-              const intervalTime = duration / steps;
-
-              const counterTimer = setInterval(() => {
-                currentNum += increment;
-                if (currentNum >= targetNum) {
-                  currentNum = targetNum;
-                  clearInterval(counterTimer);
-                }
-                entry.target.textContent = `${prefix}${isDecimal ? currentNum.toFixed(2) : Math.round(currentNum)}${suffix}`;
-              }, intervalTime);
-            }
-          }
-        });
-      }, { threshold: 0.5 });
-
-      counters.forEach(el => observer.observe(el));
-    },
-
-    // 7. Kinetic Background Canvas Mesh
-    initKineticCanvas() {
-      const canvas = document.getElementById('motion-canvas');
-      if (!canvas) return;
-
-      const ctx = canvas.getContext('2d');
-      let width = canvas.width = window.innerWidth;
-      let height = canvas.height = window.innerHeight;
-
-      let mouse = { x: width / 2, y: height / 2 };
-
-      window.addEventListener('resize', () => {
-        width = canvas.width = window.innerWidth;
-        height = canvas.height = window.innerHeight;
-      });
-
-      window.addEventListener('mousemove', (e) => {
-        mouse.x = e.clientX;
-        mouse.y = e.clientY;
-      });
-
-      const particleCount = Math.min(Math.floor(width / 20), 65);
-      const particles = [];
-
-      for (let i = 0; i < particleCount; i++) {
-        particles.push({
-          x: Math.random() * width,
-          y: Math.random() * height,
-          vx: (Math.random() - 0.5) * 0.6,
-          vy: (Math.random() - 0.5) * 0.6,
-          radius: Math.random() * 2 + 1,
-          color: Math.random() > 0.5 ? '#06b6d4' : '#8b5cf6'
-        });
-      }
-
-      function renderCanvas() {
-        ctx.clearRect(0, 0, width, height);
-
-        for (let i = 0; i < particles.length; i++) {
-          const p = particles[i];
-          p.x += p.vx;
-          p.y += p.vy;
-
-          if (p.x < 0 || p.x > width) p.vx *= -1;
-          if (p.y < 0 || p.y > height) p.vy *= -1;
-
-          // Draw particle
-          ctx.beginPath();
-          ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
-          ctx.fillStyle = p.color;
-          ctx.shadowBlur = 8;
-          ctx.shadowColor = p.color;
-          ctx.fill();
-
-          // Connect nearby particles
-          for (let j = i + 1; j < particles.length; j++) {
-            const p2 = particles[j];
-            const dx = p.x - p2.x;
-            const dy = p.y - p2.y;
-            const dist = Math.sqrt(dx * dx + dy * dy);
-
-            if (dist < 120) {
-              ctx.beginPath();
-              ctx.moveTo(p.x, p.y);
-              ctx.lineTo(p2.x, p2.y);
-              ctx.strokeStyle = `rgba(6, 182, 212, ${0.2 * (1 - dist / 120)})`;
-              ctx.lineWidth = 0.8;
-              ctx.stroke();
-            }
-          }
-
-          // Cursor attraction line
-          const cdx = mouse.x - p.x;
-          const cdy = mouse.y - p.y;
-          const cdist = Math.sqrt(cdx * cdx + cdy * cdy);
-          if (cdist < 150) {
-            ctx.beginPath();
-            ctx.moveTo(p.x, p.y);
-            ctx.lineTo(mouse.x, mouse.y);
-            ctx.strokeStyle = `rgba(139, 92, 246, ${0.35 * (1 - cdist / 150)})`;
-            ctx.lineWidth = 1;
-            ctx.stroke();
-          }
-        }
-
-        requestAnimationFrame(renderCanvas);
-      }
-
-      renderCanvas();
-    }
-  };
 
   // Initialize Motion Primitives Engine
   MotionPrimitives.initAll();
