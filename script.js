@@ -159,12 +159,13 @@ document.addEventListener('DOMContentLoaded', () => {
           if (entry.isIntersecting && !entry.target.dataset.counted) {
             entry.target.dataset.counted = 'true';
             const rawText = entry.target.textContent.trim();
-            const match = rawText.match(/^([^\d]*)([\d\.]+)(.*)$/);
+            const match = rawText.match(/^([^\d]*)(\d+(?:\.\d+)?)(.*)$/);
             if (match) {
               const prefix = match[1];
               const targetNum = parseFloat(match[2]);
               const suffix = match[3];
               const isDecimal = match[2].includes('.');
+              if (isNaN(targetNum)) return;
               
               let currentNum = 0;
               const duration = 1500;
